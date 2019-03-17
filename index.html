@@ -1,0 +1,40 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<script>
+function calc(){
+    var startRubles = document.getElementById("now_in_rur").value;
+	var startDollars = document.getElementById("now_in_usd").value;
+	var rate = document.getElementById("rur_usd_rate").value;
+    var result_renderer = document.getElementById("result_lb");
+	var debug = document.getElementById("debug");
+    startRubles=Number(startRubles);
+	startDollars=Number(startDollars);
+	rate=Number(rate);
+	var total = new Number(0);
+	total = startDollars*rate+startRubles;
+    var counter=0;
+    while(total<30000000){
+		startDollars=startDollars*1.001;
+		startRubles=startRubles*1.0045;
+		total=startDollars*rate+startRubles;
+        counter=counter+1;
+		//alert(total+' see'+counter);
+    }
+    result_renderer.innerHTML=counter/12;
+	alert('Total: '+total+'startRubles: '+startRubles+'startDollars: '+startDollars);
+ }
+</script>
+</head>
+<body>
+Have rubles now:
+<input id="now_in_rur"/></br>
+Have dollars now:
+<input id="now_in_usd"/> точка как разделитель</br>
+RUR/USD rate:
+<input id="rur_usd_rate"/> точка как разделитель</br>
+<input id="calc_bt" type="button" value="Calc" onclick="calc();"/></br>
+Result: 
+<label id="result_lb">x<label/></br>
+</body>
+</html>
